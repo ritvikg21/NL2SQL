@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: nl-sql-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/....
+    username: 
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  redis:
+    host: localhost
+    port: 6379
+    #password: yourpassword        # if required
+    cache:
+      redis:
+        time-to-live: 600000        # default TTL for caches in ms (600000ms = 10min)
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #secret-key: yoursecretkey
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: query-workers
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.example.nlsql.*
+server:
+  port: 8081
+
+# Logging level can be adjusted as needed
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.example.nlsql: DEBUG
+
+# OpenAI-compatible LLM config  
+openai:
+  base-url: yourbaseurl
+  #api-key: yourkey
+  model: gemini-2.5-flash
