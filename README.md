@@ -10,7 +10,7 @@ The system is built using Spring Boot and follows an event-driven architecture f
 ## Architecture
 
 The system uses a distributed architecture where user requests are processed asynchronously.
-
+https://github.com/ritvikg21/NL2SQL/blob/main/NL2SQLArchitecture.jpg
 
 # Flow:
 
